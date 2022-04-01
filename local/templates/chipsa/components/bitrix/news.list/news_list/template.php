@@ -35,6 +35,18 @@ $this->setFrameMode(true);
                         title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>"
                         style="float:left"
                         />
+                <div class="news-author">
+                    <?foreach($arItem["DISPLAY_PROPERTIES"] as $pid=>$arProperty):?>
+                        <small>
+                            <?=$arProperty["NAME"]?>:&nbsp;
+                            <?if(is_array($arProperty["DISPLAY_VALUE"])):?>
+                                <?=implode("&nbsp;/&nbsp;", $arProperty["DISPLAY_VALUE"]);?>
+                            <?else:?>
+                                <?=$arProperty["DISPLAY_VALUE"];?>
+                            <?endif?>
+                        </small>
+                    <?endforeach;?>
+                </div>
             </div>
 		<?endif?>
         <div class="news-block-content">
@@ -60,18 +72,7 @@ $this->setFrameMode(true);
                     <span class="news-date-time">Дата публикации: <?echo $arItem["DISPLAY_ACTIVE_FROM"]?></span>
                 <?endif?>
             </div>
-            <div class="news-author">
-                <?foreach($arItem["DISPLAY_PROPERTIES"] as $pid=>$arProperty):?>
-                    <small>
-                    <?=$arProperty["NAME"]?>:&nbsp;
-                    <?if(is_array($arProperty["DISPLAY_VALUE"])):?>
-                        <?=implode("&nbsp;/&nbsp;", $arProperty["DISPLAY_VALUE"]);?>
-                    <?else:?>
-                        <?=$arProperty["DISPLAY_VALUE"];?>
-                    <?endif?>
-                    </small>
-                <?endforeach;?>
-            </div>
+
         </div>
 </div>
 <?endforeach;?>
