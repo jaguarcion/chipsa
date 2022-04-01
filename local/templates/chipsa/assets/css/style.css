@@ -65,8 +65,20 @@
 }
 .news-page-container{
     display: flex;
+    flex-direction: column;
+}
+.news-section{
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.sort-section{
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+.sort-section a{
+    margin-right: 2rem;
+    font-weight: bold;
 }
 
 

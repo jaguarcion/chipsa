@@ -18,6 +18,7 @@ $this->setFrameMode(true);
 <?endif;?>
     <?if($arResult["ITEMS"]):?>
 <?foreach($arResult["ITEMS"] as $arItem):?>
+
 <div class="news-element">
 	<?
 	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));

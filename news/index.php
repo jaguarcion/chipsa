@@ -3,7 +3,48 @@
 $APPLICATION->SetPageProperty("TITLE", "Новости");
 $APPLICATION->SetPageProperty("description", "Новости");
     $APPLICATION->SetTitle("Новости");
-?><div class="news-page-container">
+
+
+if (isset($_REQUEST['sortBy'])) {
+    $sortBy = $_REQUEST['sortBy'];
+} else {
+    $sortBy = 'sort';
+}
+if ($sortBy == 'name') {
+    $sortBy = 'NAME';
+}
+if ($sortBy == 'date') {
+    $sortBy = 'TIMESTAMP_X';
+}
+
+if (isset($_REQUEST['orderBy'])) {
+    if ($_REQUEST['orderBy'] == 'asc') {
+        $orderBy = 'desc';
+    } else {
+        $orderBy = 'asc';
+    }
+} else {
+    $orderBy = 'asc';
+}
+
+?>
+<div class="news-page-container">
+    <div class="sort-section">
+        Сортировать по:
+        <a rel="nofollow" <? if ($sortBy == 'name') : ?> class="current-sort" <? endif; ?>
+           href="<?= $APPLICATION->GetCurPageParam('sortBy=name&orderBy='.$orderBy, array('sortBy', 'orderBy')) ?>"
+        >
+            <span class="sort">Названию</span>
+        </a>
+        <a rel="nofollow" <? if ($sortBy == 'date') : ?> class="current-sort" <? endif; ?>
+           href="<?= $APPLICATION->GetCurPageParam('sortBy=date&orderBy='.$orderBy, array('sortBy', 'orderBy')) ?>"
+        >
+            <span class="sort">Дате</span>
+        </a>
+    </div>
+
+<div class="news-section">
+    <div class="filter-section">
 	 <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog.section.list", 
 	"catalog_list", 
@@ -35,7 +76,35 @@ $APPLICATION->SetPageProperty("description", "Новости");
 		"COMPONENT_TEMPLATE" => "catalog_list"
 	),
 	false
-);?> <?$APPLICATION->IncludeComponent(
+);?>
+     <?$APPLICATION->IncludeComponent("bitrix:catalog.filter", "news.filter", Array(
+	"CACHE_GROUPS" => "Y",	// Учитывать права доступа
+		"CACHE_TIME" => "36000000",	// Время кеширования (сек.)
+		"CACHE_TYPE" => "A",	// Тип кеширования
+		"FIELD_CODE" => array(	// Поля
+			0 => "NAME",
+			1 => "DATE_CREATE",
+		),
+		"FILTER_NAME" => "arrFilter",	// Имя выходящего массива для фильтрации
+		"IBLOCK_ID" => "6",	// Инфоблок
+		"IBLOCK_TYPE" => "content",	// Тип инфоблока
+		"LIST_HEIGHT" => "5",	// Высота списков множественного выбора
+		"NUMBER_WIDTH" => "5",	// Ширина полей ввода для числовых интервалов
+		"PAGER_PARAMS_NAME" => "arrPager",	// Имя массива с переменными для построения ссылок в постраничной навигации
+		"PREFILTER_NAME" => "preFilter",	// Имя входящего массива для дополнительной фильтрации элементов
+		"PRICE_CODE" => "",	// Тип цены
+		"PROPERTY_CODE" => array(	// Свойства
+			0 => "",
+			1 => "",
+		),
+		"SAVE_IN_SESSION" => "N",	// Сохранять установки фильтра в сессии пользователя
+		"TEXT_WIDTH" => "20",	// Ширина однострочных текстовых полей ввода
+		"COMPONENT_TEMPLATE" => ".default"
+	),
+	false
+);?>
+    </div>
+     <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"news_list", 
 	array(
@@ -62,7 +131,7 @@ $APPLICATION->SetPageProperty("description", "Новости");
 			0 => "",
 			1 => "",
 		),
-		"FILTER_NAME" => "",
+		"FILTER_NAME" => "arrFilter",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => "6",
 		"IBLOCK_TYPE" => "content",
@@ -91,14 +160,13 @@ $APPLICATION->SetPageProperty("description", "Новости");
 		"SET_STATUS_404" => "Y",
 		"SET_TITLE" => "N",
 		"SHOW_404" => "N",
-		"SORT_BY1" => "ID",
-		"SORT_BY2" => "SORT",
-		"SORT_ORDER1" => "DESC",
-		"SORT_ORDER2" => "ASC",
+		"SORT_BY1" => $sortBy,
+		"SORT_ORDER1" => $orderBy,
 		"STRICT_SECTION_CHECK" => "N",
 		"COMPONENT_TEMPLATE" => "news_list"
 	),
 	false
 );?>
+</div>
 </div>
  <br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
