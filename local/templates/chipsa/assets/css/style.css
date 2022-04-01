@@ -78,9 +78,10 @@
 }
 .sort-section a{
     margin-right: 2rem;
-    font-weight: bold;
 }
-
+.current-sort{
+    font-weight: bolder;
+}
 
 /* news page element styles */
 .news-list{

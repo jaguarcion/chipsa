@@ -31,12 +31,12 @@ if (isset($_REQUEST['orderBy'])) {
 <div class="news-page-container">
     <div class="sort-section">
         Сортировать по:
-        <a rel="nofollow" <? if ($sortBy == 'name') : ?> class="current-sort" <? endif; ?>
+        <a <? if ($sortBy == 'NAME') : ?> class="current-sort" <? endif; ?>
            href="<?= $APPLICATION->GetCurPageParam('sortBy=name&orderBy='.$orderBy, array('sortBy', 'orderBy')) ?>"
         >
             <span class="sort">Названию</span>
         </a>
-        <a rel="nofollow" <? if ($sortBy == 'date') : ?> class="current-sort" <? endif; ?>
+        <a <? if ($sortBy == 'TIMESTAMP_X') : ?> class="current-sort" <? endif; ?>
            href="<?= $APPLICATION->GetCurPageParam('sortBy=date&orderBy='.$orderBy, array('sortBy', 'orderBy')) ?>"
         >
             <span class="sort">Дате</span>
