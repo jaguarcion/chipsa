@@ -74,9 +74,17 @@
     display: flex;
     flex-direction: column;
 }
-.news-element a img{
+.news-element{
+    display: flex;
+    flex-direction: row;
+}
+.news-element .preview_picture{
     width: 300px;
     height: auto;
+}
+.news-block-content{
+    display: flex;
+    flex-direction: column;
 }
 .news-name{
     font-size: 3rem;
