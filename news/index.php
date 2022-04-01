@@ -24,7 +24,7 @@ $APPLICATION->SetPageProperty("description", "Новости");
 			1 => "",
 		),
 		"SECTION_ID" => $_REQUEST["SECTION_CODE"],
-		"SECTION_URL" => "#SITE_DIR#/news/#SECTION_CODE#/",
+		"SECTION_URL" => "",
 		"SECTION_USER_FIELDS" => array(
 			0 => "",
 			1 => "",
@@ -51,7 +51,7 @@ $APPLICATION->SetPageProperty("description", "Новости");
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
 		"CHECK_DATES" => "Y",
-		"DETAIL_URL" => "#SITE_DIR#/news/#SECTION_CODE_PATH#/#ELEMENT_CODE#",
+		"DETAIL_URL" => "",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_DATE" => "Y",
 		"DISPLAY_NAME" => "Y",

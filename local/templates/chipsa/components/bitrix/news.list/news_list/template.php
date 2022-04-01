@@ -16,6 +16,7 @@ $this->setFrameMode(true);
 <?if($arParams["DISPLAY_TOP_PAGER"]):?>
 	<?=$arResult["NAV_STRING"]?><br />
 <?endif;?>
+    <?if($arResult["ITEMS"]):?>
 <?foreach($arResult["ITEMS"] as $arItem):?>
 <div class="news-element">
 	<?
@@ -76,6 +77,9 @@ $this->setFrameMode(true);
         </div>
 </div>
 <?endforeach;?>
+    <?else:?>
+    <p class="not-found-message">Ничего не найдено</p>
+    <?endif;?>
 <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
 	<br /><?=$arResult["NAV_STRING"]?>
 <?endif;?>

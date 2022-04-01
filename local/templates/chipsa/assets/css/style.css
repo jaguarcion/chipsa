@@ -76,6 +76,7 @@
     flex-direction: column;
 }
 .news-element{
+    position: relative;
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
@@ -117,7 +118,13 @@
 }
 .news-date{
     position: absolute;
-    bottom: 0px;
+    bottom: 2rem;
+}
+.not-found-message{
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
 }
 
 /* news page catalog list styles */

@@ -4,7 +4,7 @@
     <p class="catalog-nav-title">Список разделов:</p>
     <ul>
         <?php
-            foreach ($arResult['SECTIONS'] as &$arSection)
+            foreach ($arResult['SECTIONS'] as $arSection)
             {
                 $this->AddEditAction($arSection['ID'], $arSection['EDIT_LINK'], $strSectionEdit);
                 $this->AddDeleteAction($arSection['ID'], $arSection['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams);

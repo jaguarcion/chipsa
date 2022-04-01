@@ -1,7 +1,13 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 ?>
-
+<?$APPLICATION->IncludeComponent("bitrix:breadcrumb", "breadcrumbs", Array(
+	"PATH" => "",	// Путь, для которого будет построена навигационная цепочка (по умолчанию, текущий путь)
+		"SITE_ID" => "s1",	// Cайт (устанавливается в случае многосайтовой версии, когда DOCUMENT_ROOT у сайтов разный)
+		"START_FROM" => "0",	// Номер пункта, начиная с которого будет построена навигационная цепочка
+	),
+	false
+);?>
 <?$APPLICATION->IncludeComponent("bitrix:news.detail", "news_detail", Array(
 	"ACTIVE_DATE_FORMAT" => "d.M.Y",	// Формат показа даты
 		"ADD_ELEMENT_CHAIN" => "N",	// Включать название элемента в цепочку навигации
@@ -24,7 +30,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 		"DISPLAY_PREVIEW_TEXT" => "Y",	// Выводить текст анонса
 		"DISPLAY_TOP_PAGER" => "N",	// Выводить над списком
 		"ELEMENT_CODE" => "",	// Код новости
-		"ELEMENT_ID" => $_REQUEST["ELEMENT_ID"],	// ID новости
+		"ELEMENT_ID" => $_REQUEST["ID"],	// ID новости
 		"FIELD_CODE" => array(	// Поля
 			0 => "",
 			1 => "",
