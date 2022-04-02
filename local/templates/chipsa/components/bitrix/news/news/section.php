@@ -11,6 +11,29 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+
+if (isset($_REQUEST['sortBy'])) {
+    $sortBy = $_REQUEST['sortBy'];
+} else {
+    $sortBy = 'sort';
+}
+if ($sortBy == 'name') {
+    $sortBy = 'NAME';
+}
+if ($sortBy == 'date') {
+    $sortBy = 'TIMESTAMP_X';
+}
+
+if (isset($_REQUEST['orderBy'])) {
+    if ($_REQUEST['orderBy'] == 'asc') {
+        $orderBy = 'desc';
+    } else {
+        $orderBy = 'asc';
+    }
+} else {
+    $orderBy = 'asc';
+}
+
 ?>
 <div class="sort-section">
     Сортировать по:
@@ -85,8 +108,8 @@ $this->setFrameMode(true);
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
 		"NEWS_COUNT" => $arParams["NEWS_COUNT"],
-		"SORT_BY1" => $arParams["SORT_BY1"],
-		"SORT_ORDER1" => $arParams["SORT_ORDER1"],
+		"SORT_BY1" => $sortBy,
+		"SORT_ORDER1" => $orderBy,
 		"SORT_BY2" => $arParams["SORT_BY2"],
 		"SORT_ORDER2" => $arParams["SORT_ORDER2"],
 		"FIELD_CODE" => $arParams["LIST_FIELD_CODE"],
@@ -123,7 +146,7 @@ $this->setFrameMode(true);
 		"ACTIVE_DATE_FORMAT" => $arParams["LIST_ACTIVE_DATE_FORMAT"],
 		"USE_PERMISSIONS" => $arParams["USE_PERMISSIONS"],
 		"GROUP_PERMISSIONS" => $arParams["GROUP_PERMISSIONS"],
-		"FILTER_NAME" => $arParams["FILTER_NAME"],
+        "FILTER_NAME" => "arrFilter",
 		"HIDE_LINK_WHEN_NO_DETAIL" => $arParams["HIDE_LINK_WHEN_NO_DETAIL"],
 		"CHECK_DATES" => $arParams["CHECK_DATES"],
 		"STRICT_SECTION_CHECK" => $arParams["STRICT_SECTION_CHECK"],

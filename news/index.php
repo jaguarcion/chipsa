@@ -3,30 +3,6 @@
 $APPLICATION->SetPageProperty("TITLE", "Новости");
 $APPLICATION->SetPageProperty("description", "Новости");
     $APPLICATION->SetTitle("Новости");
-
-
-if (isset($_REQUEST['sortBy'])) {
-    $sortBy = $_REQUEST['sortBy'];
-} else {
-    $sortBy = 'sort';
-}
-if ($sortBy == 'name') {
-    $sortBy = 'NAME';
-}
-if ($sortBy == 'date') {
-    $sortBy = 'TIMESTAMP_X';
-}
-
-if (isset($_REQUEST['orderBy'])) {
-    if ($_REQUEST['orderBy'] == 'asc') {
-        $orderBy = 'desc';
-    } else {
-        $orderBy = 'asc';
-    }
-} else {
-    $orderBy = 'asc';
-}
-
 ?>
 
 
@@ -106,9 +82,9 @@ if (isset($_REQUEST['orderBy'])) {
 		"SET_STATUS_404" => "N",	// Устанавливать статус 404
 		"SET_TITLE" => "Y",	// Устанавливать заголовок страницы
 		"SHOW_404" => "N",	// Показ специальной страницы
-		"SORT_BY1" => "ACTIVE_FROM",	// Поле для первой сортировки новостей
+		"SORT_BY1" => $sortBy,	// Поле для первой сортировки новостей
 		"SORT_BY2" => "SORT",	// Поле для второй сортировки новостей
-		"SORT_ORDER1" => "DESC",	// Направление для первой сортировки новостей
+		"SORT_ORDER1" => $orderBy,	// Направление для первой сортировки новостей
 		"SORT_ORDER2" => "ASC",	// Направление для второй сортировки новостей
 		"STRICT_SECTION_CHECK" => "N",	// Строгая проверка раздела
 		"USE_CATEGORIES" => "N",	// Выводить материалы по теме
